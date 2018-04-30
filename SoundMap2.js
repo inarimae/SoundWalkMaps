@@ -9,6 +9,7 @@ Sound Walk Map by A.Takahashi, 2016.11.16
  (rev.1 SoundJump function is appended. 2017.05.06.)
  (rev.2.1 Multiple sound sources can be applied. 2017.09.21-2018.01.16)
  (rev.2.2 Notations can be located. 2018.01.24-)
+ (rev.2.3 Satelite image option is added as maptype. 2018.04.30)
 ***********************************/
 
 // include http://maps.googleapis.com/maps/api/js?key=AIzaSyBOQopGO-8ZGVLtaB0Q7u_uLFMKXazUBX4&sensor=false
@@ -53,6 +54,7 @@ var mark_current = null ;
 var audio = null ;
 var audio_running = false ;
 var image_current = null ;
+var maptype = 'roadmap' ;
 
 var i_dataset_current = 0 ; // 現在再生している音源の番号。
 
@@ -73,6 +75,8 @@ function initialize() {
       if ( data.notetz != null   ) { notetz = data.notetz ; }
 
       if ( data.notefile != null ) { notefile=data.notefile ; } // あれば代入。
+
+      if ( data.maptype != null  ) { maptype = data.maptype ; } // オプションとして地図スタイル設定。
 
       // 古い形式と新しい形式双方に対応するため、データ前処理をifで切り分ける。
 
@@ -205,7 +209,8 @@ function InitAndMainloop() { // メインルーチン。地図と音声を起動、ループルーチン
     zoom: zoom,
     center: map_center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    clickableIcons: false // 地物が選択されてマーカーが飛ばされるのを防止。
+    clickableIcons: false, // 地物が選択されてマーカーが飛ばされるのを防止。
+    mapTypeId: maptype // マップタイプを設定。デフォルトは 'roadmap'
   };
   map = new google.maps.Map(document.getElementById("map_canvas"), opts);
   google.maps.event.addListener(map, 'click', setMarkerByposition); // 地図上のクリックを捉える。
