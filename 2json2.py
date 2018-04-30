@@ -28,7 +28,7 @@ soundtz = 9 # サウンド：日本時間
 imagetz = 9 # 画像：日本時間
 displaytz = 9 # 表示：現地時間 Asia/Japan
 notetz = 9 # ノーテーション：現地時間
-maptype = 'satelite' # デフォルトは 'roadmap' だが、オプションなのでなくても可。
+maptype = 'satellite' # デフォルトは 'roadmap' だが、オプションなのでなくても可。
 
 zoom = 15
 
